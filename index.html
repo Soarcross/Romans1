@@ -195,6 +195,23 @@ svg {
 }
 
 /* ===========================================
+   FULL-SCREEN FILL
+   The stage is resized by JS to the window's shape, so slide
+   backgrounds always reach every edge (no black bars). The
+   actual content lives in .slide-body: a 1920×1080 box centered
+   in the slide and scaled as large as fits.
+   =========================================== */
+.deck-stage .slide { width: 100%; height: 100%; }
+.slide-body {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 1920px;
+    height: 1080px;
+    transform: translate(-50%, -50%);
+}
+
+/* ===========================================
    BASE SLIDE LOOK
    Warm parchment with a soft lamp-light glow
    and a thin printed-page frame.
@@ -205,6 +222,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -webkit-tap-highlight-color: transparent;
 }
+body.dark { --stage-bg: var(--pine); }
 
 .slide {
     font-family: var(--font-body);
@@ -978,8 +996,7 @@ h2.heading {
     pointer-events: none;
     transition: color 0.4s;
 }
-body.dark .chrome,
-body.letterbox .chrome {
+body.dark .chrome {
     --chrome-fg: rgba(247, 239, 226, 0.75);
     --chrome-track: rgba(247, 239, 226, 0.18);
     --chrome-fill: var(--gold);
@@ -2051,6 +2068,7 @@ body.editing .deck-stage { cursor: text; }
         <span class="chrome-section" id="chromeSection"></span>
         <span class="chrome-right">
             <button class="chrome-btn" id="btnNotes" title="Presenter notes (N)" aria-label="Toggle presenter notes">Notes</button>
+            <button class="chrome-btn" id="btnFull" title="Fullscreen (F)" aria-label="Toggle fullscreen">Fullscreen</button>
             <button class="chrome-btn" id="btnTimer" title="Section timer (T)" aria-label="Toggle section timer">Timer</button>
             <span class="counter" id="counter" aria-live="polite"></span>
         </span>
@@ -2123,13 +2141,23 @@ class SlidePresentation {
         this.slides.forEach(slide => {
             const i = +slide.dataset.section;
             if (slide.matches('.s-discuss, .thesis, .s-big')) slide.classList.add('is-dark');
+            // Move content into a centered 1920×1080 body; edge decorations stay on the slide
+            let body = slide.querySelector('.slide-body');
+            if (!body) {
+                body = document.createElement('div');
+                body.className = 'slide-body';
+                [...slide.children].forEach(c => {
+                    if (!c.matches('.notes, .sun, .apply-band')) body.appendChild(c);
+                });
+                slide.appendChild(body);
+            }
             if (slide.hasAttribute('data-nokicker') || slide.querySelector('.kicker')) return;
             const s = SECTIONS[i];
             const k = document.createElement('div');
             k.className = 'kicker';
             k.innerHTML = `<span class="k-num">${String(i + 1).padStart(2, '0')}</span><span>${s.name}</span>` +
                 (s.ref ? `<span class="k-ref">${s.ref}</span>` : '');
-            slide.prepend(k);
+            body.prepend(k);
         });
     }
 
@@ -2153,14 +2181,17 @@ class SlidePresentation {
     /* --- Scale the fixed 1920×1080 stage to fit the window --- */
     setupStageScale() {
         const scale = () => {
-            const f = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
-            const x = (window.innerWidth - 1920 * f) / 2;
-            const y = (window.innerHeight - 1080 * f) / 2;
-            this.stage.style.transform = `translate(${x}px, ${y}px) scale(${f})`;
-            document.body.classList.toggle('letterbox', y > 50);   // chrome sits on the dark bars
+            // Content scales to fit (never cropped); the stage itself is
+            // stretched to the window's aspect ratio so backgrounds fill it.
+            const w = window.innerWidth, h = window.innerHeight;
+            const f = Math.min(w / 1920, h / 1080);
+            this.stage.style.width = (w / f) + 'px';
+            this.stage.style.height = (h / f) + 'px';
+            this.stage.style.transform = `scale(${f})`;
         };
         scale();
         window.addEventListener('resize', scale);
+        document.addEventListener('fullscreenchange', scale);
     }
 
     /* --- Keyboard --- */
@@ -2176,6 +2207,7 @@ class SlidePresentation {
                 return;
             }
             const k = e.key;
+            if (k !== 'f' && k !== 'F' && k !== 'Escape') this.autoFullscreen();
             if (['ArrowRight', 'ArrowDown', ' ', 'PageDown', 'Enter'].includes(k)) { e.preventDefault(); this.next(); }
             else if (['ArrowLeft', 'ArrowUp', 'PageUp', 'Backspace'].includes(k)) { e.preventDefault(); this.prev(); }
             else if (k === 'Home') this.show(0);
@@ -2207,6 +2239,7 @@ class SlidePresentation {
         }, { passive: true });
         vp.addEventListener('click', e => {
             if (this.editing || swiped) { swiped = false; return; }
+            this.autoFullscreen();
             e.clientX < window.innerWidth * 0.25 ? this.prev() : this.next();
         });
         let wheelLock = 0;
@@ -2218,7 +2251,19 @@ class SlidePresentation {
         }, { passive: true });
     }
 
+    /* Browsers only allow fullscreen after a user gesture, so the
+       first click / key press of the session enters fullscreen. */
+    autoFullscreen() {
+        if (this.triedFullscreen) return;
+        this.triedFullscreen = true;
+        if (!document.fullscreenElement && document.documentElement.requestFullscreen) {
+            document.documentElement.requestFullscreen().catch(() => {});
+        }
+    }
+
     setupChromeButtons() {
+        if (!document.documentElement.requestFullscreen) document.getElementById('btnFull').style.display = 'none';
+        document.getElementById('btnFull').addEventListener('click', e => { e.stopPropagation(); this.triedFullscreen = true; this.toggleFullscreen(); });
         document.getElementById('btnNotes').addEventListener('click', e => { e.stopPropagation(); this.toggleNotes(); });
         document.getElementById('btnTimer').addEventListener('click', e => { e.stopPropagation(); this.toggleTimer(); });
         document.getElementById('timer').addEventListener('click', e => { e.stopPropagation(); this.togglePause(); });
@@ -2310,6 +2355,7 @@ class SlidePresentation {
     }
 
     toggleFullscreen() {
+        this.triedFullscreen = true;
         if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
         else document.exitFullscreen?.();
     }
