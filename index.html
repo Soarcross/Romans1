@@ -446,21 +446,25 @@ h2.heading {
     background: currentColor;
     border-radius: 2px;
 }
-/* Highlights used in Romans 1:18–32 */
+/* Highlights used in Romans 1:18–32 — marker style that wraps cleanly across lines */
+.hl-ex, .hl-gave, .hl-root {
+    font-weight: 500;
+    padding: 0.02em 0.14em;
+    margin: 0 -0.04em;
+    border-radius: 0.18em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+}
 .hl-ex {           /* "exchanged" */
-    color: var(--terra);
-    font-weight: 600;
-    background: linear-gradient(transparent 62%, var(--terra-tint) 62%);
+    color: #8A3415;
+    background: rgba(163, 68, 29, 0.13);
 }
 .hl-gave {         /* "God gave them up" */
-    font-style: italic;
-    font-weight: 600;
-    color: #2F5A4E;
-    background: linear-gradient(transparent 62%, rgba(47, 90, 78, 0.14) 62%);
+    color: #234B40;
+    background: rgba(47, 90, 78, 0.14);
 }
-.hl-root {
-    font-weight: 600;
-    background: linear-gradient(transparent 62%, rgba(232, 185, 90, 0.4) 62%);
+.hl-root {         /* the root sin, v21 */
+    background: rgba(232, 185, 90, 0.38);
 }
 
 /* ===========================================
@@ -726,6 +730,14 @@ h2.heading {
     border-radius: 14px;
     color: rgba(36, 26, 20, 0.62);
     border: 2px solid transparent;
+}
+.vice-sm { gap: 14px 16px; }
+.vice-sm .vice {
+    font-size: 40px;
+    padding: 12px 22px;
+    color: var(--ink);
+    background: rgba(255, 252, 245, 0.7);
+    border-color: var(--rule);
 }
 .vice.every {
     color: var(--ink);
@@ -1424,7 +1436,7 @@ body.editing .deck-stage { cursor: text; }
 <section class="slide s-discuss" data-section="2">
     <div class="discuss-wrap">
         <div class="discuss-label reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>Discuss</div>
-        <p class="question reveal">Using only verses 1–4, summarize the gospel in <em>one sentence</em>.</p>
+        <p class="question reveal">Paul gives a concise summary of the gospel in verses 1–4. Can you put it in <em>one sentence</em> of your own?</p>
     </div>
     <aside class="notes">
         <ul>
@@ -1462,19 +1474,6 @@ body.editing .deck-stage { cursor: text; }
             <li>The same word, "called," is used for Paul (v1) and for ordinary believers (v6–7).</li>
             <li><b>Saint</b> doesn't mean "super-Christian." It means "holy one," someone set apart by God. Every believer is a saint.</li>
             <li>Note the order: loved and called come <b>first</b>, and the behavior follows.</li>
-        </ul>
-    </aside>
-</section>
-
-<section class="slide s-discuss" data-section="2">
-    <div class="discuss-wrap">
-        <div class="discuss-label reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>Discuss</div>
-        <p class="question reveal">What changes if you see yourself as <em>“called to be a saint”</em> instead of “trying to be a good person”?</p>
-    </div>
-    <aside class="notes">
-        <ul>
-            <li>"Good person" depends on my effort and is measured against other people. "Called saint" depends on God's choice and his love.</li>
-            <li>Ask: Which one leads to anxiety? Which one leads to freedom and gratitude?</li>
         </ul>
     </aside>
 </section>
@@ -1783,7 +1782,7 @@ body.editing .deck-stage { cursor: text; }
         <ul>
             <li>The root sin isn't a specific behavior. It's <b>ingratitude</b> and refusing to give God his place.</li>
             <li>Every sin downstream grows from this root: I take the gifts and ignore the Giver.</li>
-            <li>That's why thankfulness is one of our application points tonight.</li>
+            <li>Ask: what would it look like to be a more thankful person this week?</li>
         </ul>
     </aside>
 </section>
@@ -1969,10 +1968,10 @@ body.editing .deck-stage { cursor: text; }
         <div>
             <div class="div-meta reveal">Section 8 · 8 min</div>
             <h2 class="div-title reveal">Application</h2>
-            <p class="div-ref reveal">Four ways to live Romans 1 this week</p>
+            <p class="div-ref reveal">Three ways to live Romans 1 this week</p>
         </div>
     </div>
-    <aside class="notes"><p>Four short applications. Consider splitting into pairs or small groups for a couple of them.</p></aside>
+    <aside class="notes"><p>Three short applications. Consider splitting into pairs or small groups for a couple of them.</p></aside>
 </section>
 
 <section class="slide s-apply" data-section="7">
@@ -1992,25 +1991,7 @@ body.editing .deck-stage { cursor: text; }
 <section class="slide s-apply" data-section="7">
     <div class="apply-band"></div>
     <div class="inner">
-        <div class="apply-tag reveal"><span class="apply-num">2</span>Thankfulness<span class="apply-ref">v21</span></div>
-        <p class="apply-q reveal">This week: each day, name <em>one specific thing</em> to thank God for.</p>
-        <div class="week reveal">
-            <div class="day">Mon</div><div class="day">Tue</div><div class="day">Wed</div><div class="day">Thu</div><div class="day">Fri</div><div class="day">Sat</div><div class="day">Sun</div>
-        </div>
-    </div>
-    <aside class="notes">
-        <ul>
-            <li>Ingratitude was the root in v21, so gratitude is the antidote.</li>
-            <li>Make it <b>specific</b>: not "my family," but "the way my daughter laughed at dinner."</li>
-            <li>Option: a group chat where everyone posts their thank-you each day.</li>
-        </ul>
-    </aside>
-</section>
-
-<section class="slide s-apply" data-section="7">
-    <div class="apply-band"></div>
-    <div class="inner">
-        <div class="apply-tag reveal"><span class="apply-num">3</span>Not Ashamed<span class="apply-ref">v16</span></div>
+        <div class="apply-tag reveal"><span class="apply-num">2</span>Not Ashamed<span class="apply-ref">v16</span></div>
         <p class="apply-q reveal" style="font-size:70px">Where this week do you tend to hide your faith? What would <em>“not ashamed”</em> look like there?</p>
     </div>
     <aside class="notes">
@@ -2024,8 +2005,11 @@ body.editing .deck-stage { cursor: text; }
 <section class="slide s-apply" data-section="7">
     <div class="apply-band"></div>
     <div class="inner">
-        <div class="apply-tag reveal"><span class="apply-num">4</span>Humility<span class="apply-ref">vv29–31</span></div>
-        <p class="apply-q reveal">Which sin here do you tend to <em>excuse</em>?</p>
+        <div class="apply-tag reveal"><span class="apply-num">3</span>Humility<span class="apply-ref">vv29–31</span></div>
+        <p class="apply-q reveal" style="margin-bottom:56px">Which sin here do you tend to <em>excuse</em>?</p>
+        <div class="vice-cloud vice-sm reveal">
+            <span class="vice">unrighteousness</span><span class="vice">evil</span><span class="vice">covetousness</span><span class="vice">malice</span><span class="vice">envy</span><span class="vice">murder</span><span class="vice">strife</span><span class="vice">deceit</span><span class="vice">maliciousness</span><span class="vice">gossips</span><span class="vice">slanderers</span><span class="vice">haters of God</span><span class="vice">insolent</span><span class="vice">haughty</span><span class="vice">boastful</span><span class="vice">inventors of evil</span><span class="vice">disobedient to parents</span><span class="vice">foolish</span><span class="vice">faithless</span><span class="vice">heartless</span><span class="vice">ruthless</span>
+        </div>
     </div>
     <aside class="notes">
         <ul>
@@ -2066,7 +2050,7 @@ body.editing .deck-stage { cursor: text; }
         <ul>
             <li>We end where Paul began: his greeting of <b>grace and peace</b> (v7).</li>
             <li>Thank everyone for coming and for sharing honestly.</li>
-            <li>Remind them of the thankfulness challenge and their "not ashamed" situation this week.</li>
+            <li>Remind them of their "not ashamed" situation this week.</li>
         </ul>
     </aside>
 </section>
