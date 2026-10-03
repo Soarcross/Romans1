@@ -1,0 +1,2357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#F5EDE0">
+<title>Romans 1: The Power of God for Salvation</title>
+
+<!-- ===========================================
+     FONTS (Google Fonts — the only external dependency)
+     Literata ............ Scripture (serif)
+     Bricolage Grotesque . headings (sans)
+     Figtree ............. everything else (sans)
+     =========================================== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Figtree:ital,wght@0,400..800;1,400..700&family=Literata:ital,opsz,wght@0,7..72,400..600;1,7..72,400..500&display=swap">
+
+<style>
+/* ===========================================
+   CSS CUSTOM PROPERTIES (THEME)
+   Change these to re-theme the whole deck.
+   =========================================== */
+:root {
+    /* Light "parchment" slides */
+    --paper: #F5EDE0;
+    --paper-2: #ECE0CC;
+    --ink: #241A14;
+    --ink-soft: #5E4B3D;
+    --terra: #A3441D;          /* main accent on light slides */
+    --terra-tint: rgba(163, 68, 29, 0.12);
+    --rule: rgba(36, 26, 20, 0.14);
+
+    /* Discussion slides */
+    --pine: #1D3832;
+    --pine-2: #2A4C43;
+    --cream: #F7EFE2;
+    --gold: #E8B95A;
+
+    /* Thesis section (Romans 1:16–17) */
+    --espresso: #22130C;
+    --espresso-2: #3F2216;
+    --thesis-gold: #F2C467;
+
+    /* Big-idea slide */
+    --ember: #8C3818;
+
+    /* Typography — authored at the 1920×1080 stage size */
+    --font-display: 'Bricolage Grotesque', 'Figtree', sans-serif;
+    --font-body: 'Figtree', sans-serif;
+    --font-scripture: 'Literata', Georgia, serif;
+
+    /* Animation */
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --duration-normal: 0.7s;
+
+    /* Used by viewport-base below */
+    --stage-bg: #1a120d;
+    --slide-bg: var(--paper);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ===========================================
+   FIXED 16:9 STAGE: MANDATORY BASE STYLES
+   (full contents of viewport-base.css)
+   =========================================== */
+
+/* 1. Lock the browser viewport */
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    background: var(--stage-bg, #000);
+}
+
+/* 2. Full-window deck viewport */
+.deck-viewport {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    background: var(--stage-bg, #000);
+}
+
+/* 3. Fixed 16:9 design canvas.
+   JavaScript sets transform: translate(...) scale(...). */
+.deck-stage {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    transform-origin: 0 0;
+    background: var(--slide-bg, #fff);
+}
+
+/* 4. Slides stack inside the fixed stage.
+   Content must be laid out at 1920×1080, not reflowed per device. */
+.slide {
+    position: absolute;
+    inset: 0;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    background: var(--slide-bg, #fff);
+}
+
+.slide.active,
+.slide.visible {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 1;
+}
+
+/* 5. Keep media inside authored slide bounds */
+img,
+video,
+canvas,
+svg {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* 6. Presentation chrome stays outside the slide design system */
+.deck-controls {
+    position: fixed;
+    left: 50%;
+    bottom: 22px;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+/* 7. Print one fixed-size slide per page */
+@media print {
+    html,
+    body {
+        width: 1920px;
+        height: auto;
+        overflow: visible;
+        background: #fff;
+    }
+
+    .deck-viewport {
+        position: static;
+        overflow: visible;
+        background: #fff;
+    }
+
+    .deck-stage {
+        position: static;
+        width: auto;
+        height: auto;
+        transform: none !important;
+        background: none;
+    }
+
+    .slide {
+        position: relative;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        width: 1920px;
+        height: 1080px;
+        break-after: page;
+        page-break-after: always;
+    }
+
+    .slide:last-child {
+        break-after: auto;
+        page-break-after: auto;
+    }
+
+    .deck-controls {
+        display: none !important;
+    }
+}
+
+/* 8. Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.2s !important;
+    }
+}
+
+/* ===========================================
+   BASE SLIDE LOOK
+   Warm parchment with a soft lamp-light glow
+   and a thin printed-page frame.
+   =========================================== */
+body {
+    font-family: var(--font-body);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.slide {
+    font-family: var(--font-body);
+    color: var(--ink);
+    background:
+        radial-gradient(1100px 700px at 85% 10%, rgba(255, 246, 228, 0.9), transparent 70%),
+        radial-gradient(900px 600px at 5% 100%, rgba(214, 186, 150, 0.35), transparent 70%),
+        var(--paper);
+}
+
+/* Printed-page frame on light slides */
+.slide::before {
+    content: '';
+    position: absolute;
+    inset: 36px;
+    border: 1.5px solid var(--rule);
+    border-radius: 6px;
+    pointer-events: none;
+}
+
+/* Generic centered content box (keeps clear of kicker + bottom chrome) */
+.inner {
+    position: absolute;
+    inset: 150px 170px 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Section kicker in the top-left of most slides (injected by JS) */
+.kicker {
+    position: absolute;
+    top: 70px;
+    left: 96px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    font: 600 26px/1 var(--font-body);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+}
+.kicker .k-num { color: var(--terra); }
+.kicker .k-ref {
+    letter-spacing: 0.04em;
+    text-transform: none;
+    font-weight: 500;
+    opacity: 0.85;
+}
+.kicker .k-ref::before { content: '·'; margin-right: 18px; }
+
+h2.heading {
+    font: 700 88px/1.05 var(--font-display);
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 64px;
+}
+
+.notes { display: none; }   /* presenter notes live in the slide but never render on it */
+
+/* ===========================================
+   ANIMATIONS
+   Elements with .reveal fade up when their
+   slide becomes .visible (staggered).
+   =========================================== */
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity var(--duration-normal) var(--ease-out-expo),
+                transform var(--duration-normal) var(--ease-out-expo);
+}
+.slide.visible .reveal { opacity: 1; transform: none; }
+.slide.visible .reveal:nth-child(1) { transition-delay: 0.05s; }
+.slide.visible .reveal:nth-child(2) { transition-delay: 0.15s; }
+.slide.visible .reveal:nth-child(3) { transition-delay: 0.25s; }
+.slide.visible .reveal:nth-child(4) { transition-delay: 0.35s; }
+.slide.visible .reveal:nth-child(5) { transition-delay: 0.45s; }
+.slide.visible .reveal:nth-child(6) { transition-delay: 0.55s; }
+
+/* ===========================================
+   TITLE SLIDE
+   =========================================== */
+.s-title .title-wrap {
+    position: absolute;
+    inset: 0 170px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.s-title .eyebrow {
+    font: 600 30px/1 var(--font-body);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin-bottom: 36px;
+}
+.s-title h1 {
+    font: 800 240px/0.9 var(--font-display);
+    letter-spacing: -0.04em;
+    color: var(--ink);
+}
+.s-title .title-sub {
+    font: italic 400 92px/1.1 var(--font-scripture);
+    color: var(--ink);
+    margin-top: 28px;
+    max-width: 1300px;
+}
+.s-title .title-rule {
+    width: 180px;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--terra);
+    margin: 56px 0 32px;
+}
+.s-title .title-foot {
+    font: 500 34px/1.3 var(--font-body);
+    color: var(--ink-soft);
+}
+/* Sunrise disc in the corner */
+.s-title .sun {
+    position: absolute;
+    right: -160px;
+    bottom: -260px;
+    width: 900px;
+    height: 900px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 40%, rgba(232, 160, 90, 0.55), rgba(163, 68, 29, 0.18) 55%, transparent 70%);
+    animation: breathe 9s ease-in-out infinite;
+}
+.esv-note {
+    position: absolute;
+    right: 96px;
+    bottom: 70px;
+    font: 400 18px/1.3 var(--font-body);
+    color: var(--ink-soft);
+    opacity: 0.75;
+    max-width: 640px;
+    text-align: right;
+}
+@keyframes breathe {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* ===========================================
+   SECTION DIVIDER SLIDES
+   =========================================== */
+.s-divider .div-wrap {
+    position: absolute;
+    inset: 0 170px;
+    display: flex;
+    align-items: center;
+    gap: 90px;
+}
+.s-divider .div-num {
+    font: 800 380px/0.8 var(--font-display);
+    letter-spacing: -0.05em;
+    color: var(--terra);
+}
+.s-divider .div-meta {
+    display: inline-block;
+    font: 600 30px/1 var(--font-body);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding: 14px 24px;
+    border: 2px solid var(--rule);
+    border-radius: 999px;
+    margin-bottom: 34px;
+}
+.s-divider .div-title {
+    font: 700 120px/1 var(--font-display);
+    letter-spacing: -0.03em;
+}
+.s-divider .div-ref {
+    font: 500 44px/1.3 var(--font-body);
+    color: var(--ink-soft);
+    margin-top: 28px;
+}
+
+/* ===========================================
+   SCRIPTURE SLIDES
+   Big serif text, reference underneath.
+   =========================================== */
+.s-scripture .verse {
+    font-family: var(--font-scripture);
+    font-weight: 400;
+    font-size: 54px;
+    line-height: 1.55;
+    color: var(--ink);
+    max-width: 1560px;
+}
+.s-scripture .verse.v-lg { font-size: 64px; line-height: 1.5; }
+.s-scripture .verse.v-sm { font-size: 48px; }
+.verse sup {
+    font: 700 0.5em/0 var(--font-body);
+    color: var(--terra);
+    margin-right: 0.25em;
+    vertical-align: 0.7em;
+}
+.ref {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    font: 600 38px/1 var(--font-body);
+    color: var(--terra);
+    margin-top: 52px;
+    letter-spacing: 0.02em;
+}
+.ref::before {
+    content: '';
+    width: 70px;
+    height: 3px;
+    background: currentColor;
+    border-radius: 2px;
+}
+/* Highlights used in Romans 1:18–32 */
+.hl-ex {           /* "exchanged" */
+    color: var(--terra);
+    font-weight: 600;
+    background: linear-gradient(transparent 62%, var(--terra-tint) 62%);
+}
+.hl-gave {         /* "God gave them up" */
+    font-style: italic;
+    font-weight: 600;
+    color: #2F5A4E;
+    background: linear-gradient(transparent 62%, rgba(47, 90, 78, 0.14) 62%);
+}
+.hl-root {
+    font-weight: 600;
+    background: linear-gradient(transparent 62%, rgba(232, 185, 90, 0.4) 62%);
+}
+
+/* ===========================================
+   DISCUSSION SLIDES
+   Deep pine background, "Discuss" label,
+   one large centered question.
+   =========================================== */
+.s-discuss {
+    color: var(--cream);
+    background:
+        radial-gradient(1000px 700px at 50% 30%, rgba(80, 130, 110, 0.35), transparent 70%),
+        radial-gradient(700px 500px at 100% 100%, rgba(232, 185, 90, 0.10), transparent 70%),
+        var(--pine);
+}
+.s-discuss::before { border-color: rgba(247, 239, 226, 0.14); }
+.s-discuss .kicker { color: rgba(247, 239, 226, 0.7); }
+.s-discuss .kicker .k-num { color: var(--gold); }
+.discuss-wrap {
+    position: absolute;
+    inset: 150px 200px 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.discuss-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    font: 700 32px/1 var(--font-body);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--pine);
+    background: var(--gold);
+    padding: 18px 34px 18px 28px;
+    border-radius: 999px;
+    margin-bottom: 64px;
+}
+.discuss-label svg { width: 38px; height: 38px; }
+.question {
+    font: 600 80px/1.22 var(--font-body);
+    letter-spacing: -0.01em;
+    max-width: 1500px;
+    text-wrap: balance;
+}
+.question.q-sm { font-size: 70px; }
+.question em { font-style: normal; color: var(--gold); }
+
+/* ===========================================
+   POINTS / FACTS SLIDES
+   Short keywords; explanation lives in notes.
+   =========================================== */
+.facts {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    gap: 40px;
+}
+.fact {
+    background: rgba(255, 252, 245, 0.7);
+    border: 2px solid var(--rule);
+    border-radius: 24px;
+    padding: 52px 48px;
+    min-height: 290px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 18px;
+}
+.fact-label {
+    font: 700 28px/1 var(--font-body);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--terra);
+}
+.fact-big {
+    font: 700 88px/1.05 var(--font-display);
+    letter-spacing: -0.02em;
+}
+.fact-big.fb-md { font-size: 64px; }
+.fact-small {
+    font: 500 34px/1.3 var(--font-body);
+    color: var(--ink-soft);
+}
+
+/* Numbered rows (e.g. "Why Paul writes") */
+.rows { display: flex; flex-direction: column; gap: 30px; }
+.row {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding: 30px 40px;
+    background: rgba(255, 252, 245, 0.7);
+    border: 2px solid var(--rule);
+    border-radius: 22px;
+}
+.row-num {
+    flex: none;
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font: 800 42px/1 var(--font-display);
+    color: var(--paper);
+    background: var(--terra);
+}
+.row-text { font: 600 54px/1.15 var(--font-body); }
+.row-text small {
+    font-size: 36px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    margin-left: 14px;
+}
+
+/* Audience slide */
+.pill-row { display: flex; gap: 28px; margin-bottom: 80px; }
+.pill {
+    font: 600 44px/1 var(--font-body);
+    padding: 24px 40px;
+    border-radius: 999px;
+    border: 2.5px solid var(--terra);
+    color: var(--terra);
+}
+.pill.solid { background: var(--terra); color: var(--paper); }
+.mini-line {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    padding-top: 56px;
+}
+.mini-line::before {
+    content: '';
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    right: 18px;
+    height: 4px;
+    background: var(--rule);
+    border-radius: 2px;
+}
+.mini-step { position: relative; }
+.mini-step::before {
+    content: '';
+    position: absolute;
+    top: -56px;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 5px solid var(--terra);
+}
+.mini-step.now::before { background: var(--terra); }
+.mini-date { font: 800 52px/1 var(--font-display); color: var(--terra); }
+.mini-what { font: 500 38px/1.3 var(--font-body); margin-top: 14px; color: var(--ink); }
+
+/* ===========================================
+   BOOK MAP (horizontal timeline)
+   =========================================== */
+.book-map { position: relative; margin-top: 40px; }
+.map-bar { display: flex; gap: 10px; height: 150px; }
+.map-block {
+    position: relative;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font: 800 52px/1 var(--font-display);
+    color: #FFF8EE;
+}
+.map-titles { display: flex; gap: 10px; margin-top: 30px; }
+.map-titles div {
+    font: 600 38px/1.2 var(--font-body);
+    text-align: center;
+    color: var(--ink);
+}
+.map-here {
+    position: absolute;
+    top: -96px;
+    left: 0;
+    font: 700 28px/1 var(--font-body);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terra);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.map-here::after {
+    content: '';
+    position: absolute;
+    left: 40px;
+    top: 44px;
+    border: 16px solid transparent;
+    border-top: 20px solid var(--terra);
+}
+
+/* ===========================================
+   FOCUS SLIDES (label + scripture phrase)
+   =========================================== */
+.focus-label {
+    font: 700 30px/1 var(--font-body);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin-bottom: 44px;
+}
+.focus-quote {
+    font: 400 84px/1.3 var(--font-scripture);
+    letter-spacing: -0.01em;
+    max-width: 1500px;
+    text-wrap: balance;
+}
+.focus-quote em { font-style: italic; color: var(--terra); }
+
+/* Triple-row slides ("exchanged", "gave them up") */
+.triple-head {
+    display: flex;
+    align-items: baseline;
+    gap: 30px;
+    margin-bottom: 56px;
+}
+.triple-head h2 { font: 700 96px/1 var(--font-display); letter-spacing: -0.02em; }
+.triple-head .times {
+    font: 800 44px/1 var(--font-display);
+    color: var(--paper);
+    background: var(--terra);
+    padding: 12px 22px;
+    border-radius: 14px;
+}
+.triple { display: flex; flex-direction: column; gap: 26px; }
+.trow {
+    display: grid;
+    grid-template-columns: 110px 1.15fr 60px 1fr;
+    align-items: center;
+    gap: 24px;
+    padding: 28px 36px;
+    background: rgba(255, 252, 245, 0.72);
+    border: 2px solid var(--rule);
+    border-radius: 22px;
+}
+.trow.two { grid-template-columns: 130px 1fr; }
+.trow .tv { font: 700 34px/1 var(--font-body); color: var(--terra); }
+.trow .tq { font: 400 46px/1.2 var(--font-scripture); }
+.trow .tq.lead { font-style: italic; }
+.trow .arrow { font: 400 54px/1 var(--font-body); color: var(--terra); text-align: center; }
+.gave .triple-head .times { background: #2F5A4E; }
+.gave .trow .tv { color: #2F5A4E; }
+
+/* Vice list (vv29–31) */
+.vice-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px 22px;
+    max-width: 1580px;
+}
+.vice {
+    font: 400 46px/1 var(--font-scripture);
+    padding: 16px 26px;
+    border-radius: 14px;
+    color: rgba(36, 26, 20, 0.62);
+    border: 2px solid transparent;
+}
+.vice.every {
+    color: var(--ink);
+    font-weight: 500;
+    background: rgba(232, 185, 90, 0.28);
+    border-color: rgba(163, 68, 29, 0.28);
+}
+
+/* ===========================================
+   THESIS SECTION (Romans 1:16–17)
+   Dark espresso + gold: the center of the study.
+   =========================================== */
+.thesis {
+    color: #F8EBD6;
+    background:
+        radial-gradient(900px 620px at 50% 38%, rgba(242, 196, 103, 0.22), transparent 70%),
+        radial-gradient(1200px 800px at 50% 120%, rgba(140, 56, 24, 0.45), transparent 70%),
+        var(--espresso);
+}
+.thesis::before { border-color: rgba(242, 196, 103, 0.3); }
+.thesis .kicker { color: rgba(248, 235, 214, 0.72); }
+.thesis .kicker .k-num { color: var(--thesis-gold); }
+.thesis .verse { color: #FBF1E0; }
+.thesis .verse sup { color: var(--thesis-gold); }
+.thesis .ref { color: var(--thesis-gold); }
+.thesis.s-divider .div-num { color: var(--thesis-gold); text-shadow: 0 0 80px rgba(242, 196, 103, 0.45); }
+.thesis.s-divider .div-meta { color: var(--thesis-gold); border-color: rgba(242, 196, 103, 0.45); }
+.thesis.s-divider .div-ref { color: rgba(248, 235, 214, 0.78); }
+.thesis-star {
+    position: absolute;
+    right: 120px;
+    top: 50%;
+    width: 520px;
+    height: 520px;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    border: 2px solid rgba(242, 196, 103, 0.3);
+    box-shadow: 0 0 0 60px rgba(242, 196, 103, 0.05), 0 0 0 130px rgba(242, 196, 103, 0.03);
+    animation: breathe 8s ease-in-out infinite;
+}
+
+/* One-phrase slides */
+.phrase-wrap {
+    position: absolute;
+    inset: 150px 170px 0;
+    height: 560px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.phrase-step {
+    font: 700 28px/1 var(--font-body);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(248, 235, 214, 0.6);
+    margin-bottom: 36px;
+}
+.phrase {
+    font: italic 400 124px/1.12 var(--font-scripture);
+    color: var(--thesis-gold);
+    text-shadow: 0 0 60px rgba(242, 196, 103, 0.3);
+    text-wrap: balance;
+}
+.phrase-wrap .ref { justify-content: center; margin-top: 40px; }
+.phrase-wrap .ref::after {
+    content: '';
+    width: 70px;
+    height: 3px;
+    background: currentColor;
+    border-radius: 2px;
+}
+/* The full verse along the bottom, current phrase lit */
+.phrase-context {
+    position: absolute;
+    left: 220px;
+    right: 220px;
+    bottom: 140px;
+    font: 400 32px/1.55 var(--font-scripture);
+    color: rgba(248, 235, 214, 0.42);
+    text-align: center;
+    padding-top: 36px;
+    border-top: 1.5px solid rgba(242, 196, 103, 0.25);
+}
+.phrase-context b {
+    font-weight: 500;
+    color: var(--thesis-gold);
+}
+
+/* ===========================================
+   BIG IDEA SLIDE
+   =========================================== */
+.s-big {
+    color: #FFF4E6;
+    background:
+        radial-gradient(1000px 700px at 30% 20%, rgba(255, 190, 120, 0.25), transparent 70%),
+        var(--ember);
+}
+.s-big::before { border-color: rgba(255, 244, 230, 0.2); }
+.s-big .kicker, .s-big .kicker .k-num { color: rgba(255, 244, 230, 0.75); }
+.big-1 {
+    font: 800 128px/1 var(--font-display);
+    letter-spacing: -0.03em;
+    margin-bottom: 56px;
+}
+.big-2 {
+    font: 400 66px/1.35 var(--font-scripture);
+    max-width: 1500px;
+}
+.big-2 em { font-style: italic; color: #FFD58F; }
+.s-big .ref { color: #FFD58F; }
+
+/* ===========================================
+   APPLICATION SLIDES
+   =========================================== */
+.s-apply {
+    background:
+        radial-gradient(1000px 700px at 90% 0%, rgba(255, 246, 228, 0.9), transparent 70%),
+        var(--paper-2);
+}
+.s-apply .apply-band {
+    position: absolute;
+    left: 36px;
+    top: 36px;
+    bottom: 150px;
+    width: 18px;
+    border-radius: 6px 0 0 6px;
+    background: var(--terra);
+}
+.apply-tag {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    font: 700 40px/1 var(--font-body);
+    letter-spacing: 0.04em;
+    margin-bottom: 56px;
+}
+.apply-num {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--terra);
+    color: var(--paper);
+    font: 800 38px/1 var(--font-display);
+}
+.apply-ref {
+    font-weight: 600;
+    font-size: 32px;
+    color: var(--terra);
+    padding: 10px 18px;
+    border: 2px solid var(--terra);
+    border-radius: 999px;
+}
+.apply-q {
+    font: 600 76px/1.2 var(--font-body);
+    letter-spacing: -0.01em;
+    max-width: 1500px;
+    text-wrap: balance;
+}
+.apply-q em { font-style: normal; color: var(--terra); }
+
+/* Thankfulness week strip */
+.week {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 20px;
+    margin-top: 64px;
+    max-width: 1400px;
+}
+.day {
+    height: 150px;
+    border-radius: 20px;
+    border: 2.5px dashed rgba(163, 68, 29, 0.45);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 22px;
+    font: 700 34px/1 var(--font-body);
+    color: var(--terra);
+    background: rgba(255, 252, 245, 0.6);
+}
+
+/* "This week" checklist */
+.checklist { display: flex; flex-direction: column; gap: 26px; }
+.check {
+    display: grid;
+    grid-template-columns: 70px 330px 1fr;
+    align-items: center;
+    gap: 30px;
+    padding: 26px 40px;
+    background: rgba(255, 252, 245, 0.75);
+    border: 2px solid var(--rule);
+    border-radius: 22px;
+}
+.box {
+    width: 62px;
+    height: 62px;
+    border: 4px solid var(--terra);
+    border-radius: 14px;
+}
+.check-name { font: 700 46px/1.1 var(--font-display); }
+.check-name small {
+    display: block;
+    font: 600 26px/1 var(--font-body);
+    color: var(--terra);
+    margin-top: 8px;
+    letter-spacing: 0.06em;
+}
+.check-do { font: 500 40px/1.25 var(--font-body); color: var(--ink); }
+
+/* ===========================================
+   CLOSING PRAYER
+   =========================================== */
+.s-prayer .prayer-wrap {
+    position: absolute;
+    inset: 150px 220px 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.candle {
+    width: 34px;
+    height: 54px;
+    margin-bottom: 56px;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    background: radial-gradient(circle at 50% 70%, #FFF3C4, #F2B24C 55%, #C9561F);
+    box-shadow: 0 0 60px 20px rgba(242, 178, 76, 0.4);
+    animation: flicker 3s ease-in-out infinite;
+}
+@keyframes flicker {
+    0%, 100% { transform: scale(1) rotate(-1deg); }
+    40% { transform: scale(1.06, 0.96) rotate(2deg); }
+    70% { transform: scale(0.97, 1.04) rotate(-2deg); }
+}
+.prayer-label {
+    font: 700 32px/1 var(--font-body);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin-bottom: 44px;
+}
+.prayer-text {
+    font: 600 88px/1.2 var(--font-body);
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+}
+.prayer-text em { font-style: normal; color: var(--terra); }
+.prayer-verse {
+    font: italic 400 42px/1.4 var(--font-scripture);
+    color: var(--ink-soft);
+    margin-top: 56px;
+}
+
+/* ===========================================
+   PRESENTATION CHROME (outside the stage)
+   Progress bar, counter, notes panel, timer.
+   =========================================== */
+.chrome {
+    --chrome-fg: rgba(36, 26, 20, 0.72);
+    --chrome-track: rgba(60, 40, 25, 0.16);
+    --chrome-fill: var(--terra);
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    padding: 0 max(16px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+    font-family: var(--font-body);
+    color: var(--chrome-fg);
+    pointer-events: none;
+    transition: color 0.4s;
+}
+body.dark .chrome,
+body.letterbox .chrome {
+    --chrome-fg: rgba(247, 239, 226, 0.75);
+    --chrome-track: rgba(247, 239, 226, 0.18);
+    --chrome-fill: var(--gold);
+}
+.chrome-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+    font-size: clamp(11px, 1.1vw, 15px);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+.chrome-section { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.chrome-right { display: flex; align-items: center; gap: 8px; pointer-events: auto; }
+.chrome-btn {
+    font: inherit;
+    color: inherit;
+    background: transparent;
+    border: 1.5px solid currentColor;
+    border-radius: 999px;
+    padding: 3px 10px;
+    cursor: pointer;
+    opacity: 0.7;
+    line-height: 1.2;
+}
+.chrome-btn:hover, .chrome-btn.on { opacity: 1; }
+.counter { font-variant-numeric: tabular-nums; min-width: 4.5em; text-align: right; }
+
+.progress { display: flex; gap: 4px; height: 7px; pointer-events: auto; }
+.seg {
+    position: relative;
+    height: 100%;
+    border: 0;
+    padding: 0;
+    border-radius: 4px;
+    background: var(--chrome-track);
+    overflow: hidden;
+    cursor: pointer;
+}
+.seg .fill {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 0;
+    background: var(--chrome-fill);
+    border-radius: 4px;
+    transition: width 0.5s var(--ease-out-expo);
+}
+.seg.current { outline: 1.5px solid var(--chrome-fill); outline-offset: 1px; }
+.seg.thesis-seg .fill { background: #D99A2B; }
+
+/* Presenter notes panel (N) */
+.notes-panel {
+    position: fixed;
+    left: max(16px, env(safe-area-inset-left));
+    bottom: 54px;
+    z-index: 1001;
+    width: min(460px, calc(100vw - 32px));
+    max-height: min(52vh, 520px);
+    overflow-y: auto;
+    padding: 16px 20px 14px;
+    background: rgba(24, 16, 11, 0.94);
+    color: #F5EBDD;
+    border: 1px solid rgba(232, 185, 90, 0.35);
+    border-radius: 14px;
+    box-shadow: 0 16px 50px rgba(0, 0, 0, 0.45);
+    font: 400 15px/1.5 var(--font-body);
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+    transition: opacity 0.25s, transform 0.25s;
+}
+.notes-panel.open { opacity: 1; transform: none; pointer-events: auto; }
+.notes-head {
+    display: flex;
+    justify-content: space-between;
+    font: 700 11px/1 var(--font-body);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+}
+.notes-body ul { padding-left: 18px; }
+.notes-body li { margin-bottom: 6px; }
+.notes-body p { margin-bottom: 8px; }
+.notes-body b { color: #FFE0A6; font-weight: 600; }
+.notes-keys {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(245, 235, 221, 0.15);
+    font-size: 12px;
+    color: rgba(245, 235, 221, 0.6);
+}
+.notes-keys kbd {
+    font: 600 11px/1 var(--font-body);
+    padding: 2px 6px;
+    border: 1px solid rgba(245, 235, 221, 0.35);
+    border-radius: 4px;
+}
+
+/* Section countdown timer (T) */
+.timer {
+    position: fixed;
+    top: max(14px, env(safe-area-inset-top));
+    right: max(16px, env(safe-area-inset-right));
+    z-index: 1001;
+    padding: 10px 16px 12px;
+    background: rgba(24, 16, 11, 0.9);
+    color: #F5EBDD;
+    border: 1px solid rgba(232, 185, 90, 0.35);
+    border-radius: 14px;
+    font-family: var(--font-body);
+    text-align: right;
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity 0.25s, transform 0.25s;
+    cursor: pointer;
+}
+.timer.open { opacity: 1; transform: none; pointer-events: auto; }
+.timer-label {
+    font: 700 11px/1.2 var(--font-body);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+}
+.timer-time {
+    font: 700 clamp(26px, 3vw, 44px)/1.1 var(--font-display);
+    font-variant-numeric: tabular-nums;
+}
+.timer-sub { font-size: 11px; color: rgba(245, 235, 221, 0.6); }
+.timer.warn .timer-time { color: #FFD27A; }
+.timer.over .timer-time { color: #FF8A6B; }
+.timer.paused .timer-time { opacity: 0.5; }
+
+/* ===========================================
+   INLINE EDITING (E key or top-left hot corner)
+   =========================================== */
+.edit-hotzone {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 80px;
+    z-index: 10000;
+    cursor: pointer;
+}
+.edit-toggle {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 10001;
+    font: 600 14px/1 var(--font-body);
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(232, 185, 90, 0.5);
+    background: rgba(24, 16, 11, 0.92);
+    color: #F5EBDD;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+.edit-toggle.show,
+.edit-toggle.active { opacity: 1; pointer-events: auto; }
+body.editing .slide.active [contenteditable]:hover,
+body.editing .deck-stage[contenteditable] .slide.active p:hover,
+body.editing .deck-stage[contenteditable] .slide.active h1:hover,
+body.editing .deck-stage[contenteditable] .slide.active h2:hover {
+    outline: 3px dashed rgba(163, 68, 29, 0.6);
+    outline-offset: 8px;
+}
+body.editing .deck-stage { cursor: text; }
+</style>
+</head>
+<body>
+<div class="deck-viewport" id="viewport">
+<main class="deck-stage" id="deckStage">
+
+<!-- =====================================================
+     SECTION 1 · OPENING (5 min)
+     ===================================================== -->
+<section class="slide s-title" data-section="0" data-nokicker>
+    <div class="sun"></div>
+    <div class="title-wrap">
+        <div class="eyebrow reveal">A Bible Study Workshop</div>
+        <h1 class="reveal">Romans 1</h1>
+        <p class="title-sub reveal">The Power of God for Salvation</p>
+        <div class="title-rule reveal"></div>
+        <p class="title-foot reveal">Read it · Talk about it · Live it</p>
+    </div>
+    <p class="esv-note">Scripture quotations are from the ESV® Bible (The Holy Bible, English Standard Version®), © 2001 by Crossway. Used by permission. All rights reserved.</p>
+    <aside class="notes">
+        <ul>
+            <li>Welcome everyone. Get drinks and settle in.</li>
+            <li>Tonight is a <b>workshop, not a sermon</b>. The slides are mostly questions, and the goal is for everyone to talk.</li>
+            <li>No wrong answers. "I don't know" is a fine answer.</li>
+            <li>We'll walk through all of Romans 1: who wrote it, what the gospel is, and why we need it.</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-discuss" data-section="0">
+    <div class="discuss-wrap">
+        <div class="discuss-label reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>Discuss</div>
+        <p class="question reveal">What’s something you’d be <em>embarrassed</em> to admit you believe or care about in front of people?</p>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>Icebreaker. Keep it light: a favorite show, a hobby, a strong opinion about pineapple on pizza.</li>
+            <li>Go first yourself to set the tone.</li>
+            <li>Then lead in: "Tonight Paul says, <b>'I am not ashamed of the gospel.'</b> Keep this feeling in mind. We'll come back to it."</li>
+        </ul>
+    </aside>
+</section>
+
+<!-- =====================================================
+     SECTION 2 · CONTEXT OF THE BOOK (10 min)
+     ===================================================== -->
+<section class="slide s-divider" data-section="1" data-nokicker>
+    <div class="div-wrap">
+        <div class="div-num reveal">02</div>
+        <div>
+            <div class="div-meta reveal">Section 2 · 10 min</div>
+            <h2 class="div-title reveal">Context of the Book</h2>
+            <p class="div-ref reveal">Who wrote it, to whom, and why</p>
+        </div>
+    </div>
+    <aside class="notes">
+        <p>Before we read, let's get our bearings. Knowing the setting helps the words make sense.</p>
+    </aside>
+</section>
+
+<section class="slide s-discuss" data-section="1">
+    <div class="discuss-wrap">
+        <div class="discuss-label reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>Discuss</div>
+        <p class="question reveal">What do you already know or think about <em>Romans</em>?</p>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>Collect answers without correcting. Favorite verses, "the Romans Road," "it's heavy theology," "never read it."</li>
+            <li>Affirm: many people find Romans intimidating, but it's a <b>letter</b> written to real people.</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-points" data-section="1">
+    <div class="inner">
+        <h2 class="heading reveal">Author &amp; Setting</h2>
+        <div class="facts reveal">
+            <div class="fact"><span class="fact-label">Who</span><span class="fact-big">Paul</span><span class="fact-small">apostle to the Gentiles</span></div>
+            <div class="fact"><span class="fact-label">When</span><span class="fact-big">c. AD 57</span><span class="fact-small">about 25 years after the resurrection</span></div>
+            <div class="fact"><span class="fact-label">From</span><span class="fact-big">Corinth</span><span class="fact-small">most likely</span></div>
+        </div>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li><b>Paul</b>: a former persecutor of the church, converted on the Damascus road, now an apostle to the Gentiles.</li>
+            <li><b>Around AD 57</b>, near the end of his third missionary journey.</li>
+            <li>Most likely written from <b>Corinth</b>, before he takes the collection to Jerusalem (15:25–26). Phoebe from nearby Cenchreae probably carried the letter (16:1–2).</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-points" data-section="1">
+    <div class="inner">
+        <h2 class="heading reveal" style="margin-bottom:48px">A church Paul had never visited</h2>
+        <div class="pill-row reveal">
+            <span class="pill solid">Jewish believers</span>
+            <span class="pill">+ Gentile believers</span>
+        </div>
+        <div class="mini-line reveal">
+            <div class="mini-step"><div class="mini-date">AD 49</div><div class="mini-what">Claudius expels the Jews from Rome</div></div>
+            <div class="mini-step"><div class="mini-date">Later</div><div class="mini-what">Jewish believers return</div></div>
+            <div class="mini-step now"><div class="mini-date">AD 57</div><div class="mini-what">Paul writes to the church</div></div>
+        </div>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>Paul <b>didn't plant</b> this church and had never been there (1:13).</li>
+            <li>It was a mixed church of <b>Jewish and Gentile</b> believers.</li>
+            <li><b>AD 49:</b> Emperor Claudius expelled Jews from Rome (Acts 18:2; Priscilla and Aquila were among them).</li>
+            <li>For a few years the church was mostly Gentile. When Jewish believers <b>returned</b>, imagine the tension: different foods, calendars, and assumptions. That tension sits behind much of the letter.</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-points" data-section="1">
+    <div class="inner">
+        <h2 class="heading reveal">Why Paul Writes</h2>
+        <div class="rows">
+            <div class="row reveal"><span class="row-num">1</span><span class="row-text">To explain the gospel</span></div>
+            <div class="row reveal"><span class="row-num">2</span><span class="row-text">To unite Jew and Gentile</span></div>
+            <div class="row reveal"><span class="row-num">3</span><span class="row-text">To gain support for Spain <small>15:24</small></span></div>
+        </div>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li><b>Explain the gospel:</b> Romans is the fullest explanation of the gospel Paul ever wrote.</li>
+            <li><b>Unite Jew and Gentile:</b> one gospel means one people, with no first-class and second-class Christians.</li>
+            <li><b>Spain:</b> Paul wants Rome to be his base and sending church for a mission to the western edge of the known world (15:24). He's introducing himself and his message.</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-points" data-section="1">
+    <div class="inner">
+        <h2 class="heading reveal" style="margin-bottom:130px">The Shape of Romans</h2>
+        <div class="book-map reveal">
+            <div class="map-here">We are here</div>
+            <div class="map-bar">
+                <div class="map-block" style="flex:3; background:#A3441D">1–3</div>
+                <div class="map-block" style="flex:3; background:#C2742C">3–5</div>
+                <div class="map-block" style="flex:3; background:#6F8A4C">6–8</div>
+                <div class="map-block" style="flex:3; background:#3C6A68">9–11</div>
+                <div class="map-block" style="flex:5; background:#2E4459">12–16</div>
+            </div>
+            <div class="map-titles">
+                <div style="flex:3">The Problem</div>
+                <div style="flex:3">The Solution</div>
+                <div style="flex:3">New Life</div>
+                <div style="flex:3">God &amp; Israel</div>
+                <div style="flex:5">Living It Out</div>
+            </div>
+        </div>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li><b>1–3 The Problem:</b> everyone, Gentile and Jew, is under sin.</li>
+            <li><b>3–5 The Solution:</b> righteousness from God through faith in Jesus.</li>
+            <li><b>6–8 New Life:</b> freedom from sin, life in the Spirit, "no condemnation."</li>
+            <li><b>9–11 God &amp; Israel:</b> has God kept his promises to his people?</li>
+            <li><b>12–16 Living It Out:</b> how the gospel shapes real community.</li>
+            <li>Tonight we're at the very start, where Paul states his thesis and then shows the problem.</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-discuss" data-section="1">
+    <div class="discuss-wrap">
+        <div class="discuss-label reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>Discuss</div>
+        <p class="question reveal">If you were writing to a church you’d never met, what would you want them to know <em>first</em>?</p>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>Let a few people answer.</li>
+            <li>Then: "Let's see what Paul chose to say first." He starts with who he is, and right away he's talking about Jesus.</li>
+        </ul>
+    </aside>
+</section>
+
+<!-- =====================================================
+     SECTION 3 · ROMANS 1:1–7 · CALLED (10 min)
+     ===================================================== -->
+<section class="slide s-divider" data-section="2" data-nokicker>
+    <div class="div-wrap">
+        <div class="div-num reveal">03</div>
+        <div>
+            <div class="div-meta reveal">Section 3 · 10 min</div>
+            <h2 class="div-title reveal">Called</h2>
+            <p class="div-ref reveal">Romans 1:1–7</p>
+        </div>
+    </div>
+    <aside class="notes">
+        <p>Ask someone to read verses 1–7 aloud as the next two slides come up.</p>
+    </aside>
+</section>
+
+<section class="slide s-scripture" data-section="2">
+    <div class="inner">
+        <blockquote class="verse reveal"><sup>1</sup>Paul, a servant of Christ Jesus, called to be an apostle, set apart for the gospel of God, <sup>2</sup>which he promised beforehand through his prophets in the holy Scriptures, <sup>3</sup>concerning his Son, who was descended from David according to the flesh <sup>4</sup>and was declared to be the Son of God in power according to the Spirit of holiness by his resurrection from the dead, Jesus Christ our Lord,</blockquote>
+        <p class="ref reveal">Romans 1:1–4</p>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>In Greek, verses 1–7 are <b>one long sentence</b>. Paul can't introduce himself without talking about Jesus.</li>
+            <li>Notice how quickly the focus moves from Paul to "his Son."</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-scripture" data-section="2">
+    <div class="inner">
+        <blockquote class="verse reveal"><sup>5</sup>through whom we have received grace and apostleship to bring about the obedience of faith for the sake of his name among all the nations, <sup>6</sup>including you who are called to belong to Jesus Christ, <sup>7</sup>To all those in Rome who are loved by God and called to be saints: Grace to you and peace from God our Father and the Lord Jesus Christ.</blockquote>
+        <p class="ref reveal">Romans 1:5–7</p>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>"The <b>obedience of faith</b>": faith that shows up in a changed life. Paul uses the phrase as bookends of the letter (1:5 and 16:26).</li>
+            <li>"<b>Grace and peace</b>": Paul blends a Greek greeting (charis) with a Hebrew one (shalom). That's a small picture of a church made of Jews and Gentiles.</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-points" data-section="2">
+    <div class="inner">
+        <h2 class="heading reveal">Paul’s Identity <span style="font:500 40px var(--font-body); color:var(--terra); margin-left:16px; letter-spacing:0">v1</span></h2>
+        <div class="facts reveal">
+            <div class="fact"><span class="fact-label">He is a</span><span class="fact-big">Servant</span></div>
+            <div class="fact"><span class="fact-label">He was</span><span class="fact-big">Called</span></div>
+            <div class="fact"><span class="fact-label">He is</span><span class="fact-big">Set apart</span></div>
+        </div>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li><b>Servant</b> (doulos): literally "slave." He belongs to someone else. In the Old Testament, "servant of the Lord" was also an honored title (Moses, David).</li>
+            <li><b>Called</b>: he didn't apply for the job. God chose him (Damascus road).</li>
+            <li><b>Set apart</b>: possibly a wordplay. "Pharisee" means "separated one." He was once set apart for the law, and now he's set apart for the gospel.</li>
+            <li>Paul's identity comes from what God did, not from his résumé.</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-points" data-section="2">
+    <div class="inner">
+        <h2 class="heading reveal">The Gospel Is…</h2>
+        <div class="rows">
+            <div class="row reveal"><span class="row-num">1</span><span class="row-text">Promised in Scripture <small>v2</small></span></div>
+            <div class="row reveal"><span class="row-num">2</span><span class="row-text">About the Son, descended from David <small>v3</small></span></div>
+            <div class="row reveal"><span class="row-num">3</span><span class="row-text">Declared Son of God in power <small>v4</small></span></div>
+            <div class="row reveal"><span class="row-num">4</span><span class="row-text">…by the resurrection <small>v4</small></span></div>
+        </div>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li><b>Promised beforehand:</b> the gospel isn't new. It's the fulfillment of the Old Testament story.</li>
+            <li><b>About his Son:</b> the gospel isn't mainly advice or a program. It's a person.</li>
+            <li><b>Descended from David:</b> truly human, the promised king (2 Samuel 7).</li>
+            <li><b>Declared Son of God in power:</b> the resurrection didn't make him the Son. It publicly displayed it, with power.</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-points" data-section="2">
+    <div class="inner">
+        <h2 class="heading reveal">Who You Are <span style="font:500 40px var(--font-body); color:var(--terra); margin-left:16px; letter-spacing:0">vv6–7</span></h2>
+        <div class="facts reveal">
+            <div class="fact"><span class="fact-big fb-md">Called to belong</span><span class="fact-small">to Jesus Christ</span></div>
+            <div class="fact"><span class="fact-big fb-md">Loved</span><span class="fact-small">by God</span></div>
+            <div class="fact"><span class="fact-big fb-md">Called to be saints</span><span class="fact-small">holy, set apart</span></div>
+        </div>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>The same word, "called," is used for Paul (v1) and for ordinary believers (v6–7).</li>
+            <li><b>Saint</b> doesn't mean "super-Christian." It means "holy one," someone set apart by God. Every believer is a saint.</li>
+            <li>Note the order: loved and called come <b>first</b>, and the behavior follows.</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-discuss" data-section="2">
+    <div class="discuss-wrap">
+        <div class="discuss-label reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>Discuss</div>
+        <p class="question reveal">Using only verses 1–4, summarize the gospel in <em>one sentence</em>.</p>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>Give 60 seconds of quiet to think, or have people pair up.</li>
+            <li>Listen for: promised in Scripture, Jesus as truly human (David) and truly divine (Son of God), the resurrection.</li>
+            <li>Possible example: "God kept his promise by sending his Son, the true King, who rose from the dead and is Lord."</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-discuss" data-section="2">
+    <div class="discuss-wrap">
+        <div class="discuss-label reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>Discuss</div>
+        <p class="question reveal">What changes if you see yourself as <em>“called to be a saint”</em> instead of “trying to be a good person”?</p>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>"Good person" depends on my effort and is measured against other people. "Called saint" depends on God's choice and his love.</li>
+            <li>Ask: Which one leads to anxiety? Which one leads to freedom and gratitude?</li>
+        </ul>
+    </aside>
+</section>
+
+<!-- =====================================================
+     SECTION 4 · ROMANS 1:8–15 · PAUL'S HEART (5 min)
+     ===================================================== -->
+<section class="slide s-divider" data-section="3" data-nokicker>
+    <div class="div-wrap">
+        <div class="div-num reveal">04</div>
+        <div>
+            <div class="div-meta reveal">Section 4 · 5 min</div>
+            <h2 class="div-title reveal">Paul’s Heart</h2>
+            <p class="div-ref reveal">Romans 1:8–15</p>
+        </div>
+    </div>
+    <aside class="notes">
+        <p>Short section. Read it and notice Paul's attitude toward people he's never met.</p>
+    </aside>
+</section>
+
+<section class="slide s-scripture" data-section="3">
+    <div class="inner">
+        <blockquote class="verse v-sm reveal"><sup>8</sup>First, I thank my God through Jesus Christ for all of you, because your faith is proclaimed in all the world. <sup>9</sup>For God is my witness, whom I serve with my spirit in the gospel of his Son, that without ceasing I mention you <sup>10</sup>always in my prayers, asking that somehow by God’s will I may now at last succeed in coming to you. <sup>11</sup>For I long to see you, that I may impart to you some spiritual gift to strengthen you— <sup>12</sup>that is, that we may be mutually encouraged by each other’s faith, both yours and mine.</blockquote>
+        <p class="ref reveal">Romans 1:8–12</p>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>Paul, the great apostle, says he expects to be <b>encouraged by them</b> (v12). Encouragement goes both ways.</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-scripture" data-section="3">
+    <div class="inner">
+        <blockquote class="verse reveal"><sup>13</sup>I do not want you to be unaware, brothers, that I have often intended to come to you (but thus far have been prevented), in order that I may reap some harvest among you as well as among the rest of the Gentiles. <sup>14</sup>I am under obligation both to Greeks and to barbarians, both to the wise and to the foolish. <sup>15</sup>So I am eager to preach the gospel to you also who are in Rome.</blockquote>
+        <p class="ref reveal">Romans 1:13–15</p>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>"<b>Greeks and barbarians</b>": cultured people and "outsiders," educated and uneducated. In other words, everyone.</li>
+            <li>"Under obligation" = in debt. Paul feels he owes the gospel to all kinds of people.</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-points" data-section="3">
+    <div class="inner">
+        <h2 class="heading reveal">Paul’s Heart for Them</h2>
+        <div class="facts reveal">
+            <div class="fact"><span class="fact-label">v8</span><span class="fact-big fb-md">Thankful</span></div>
+            <div class="fact"><span class="fact-label">v9</span><span class="fact-big fb-md">Praying</span></div>
+            <div class="fact"><span class="fact-label">v12</span><span class="fact-big fb-md">Mutual</span><span class="fact-small">encouragement</span></div>
+            <div class="fact"><span class="fact-label">v14</span><span class="fact-big fb-md">Obligated</span><span class="fact-small">to all</span></div>
+        </div>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li><b>Thankful</b>: he starts with what God is doing in them, not with problems.</li>
+            <li><b>Praying</b>: "without ceasing" for people he's never met.</li>
+            <li><b>Mutual</b>: he's not above them. He needs them too.</li>
+            <li><b>Obligated</b>: the gospel was given to him <b>for others</b>. He can't keep it to himself.</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-discuss" data-section="3">
+    <div class="discuss-wrap">
+        <div class="discuss-label reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>Discuss</div>
+        <p class="question q-sm reveal">Why would Paul feel he <em>“owes”</em> the gospel to people? Who are you “under obligation” to?</p>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>Analogy: if someone gave you a cure to deliver, you'd owe it to the sick, even though they didn't give it to you.</li>
+            <li>Push for specific names and places: family, coworkers, classmates, neighbors.</li>
+        </ul>
+    </aside>
+</section>
+
+<!-- =====================================================
+     SECTION 5 · ROMANS 1:16–17 · THE THESIS (10 min)
+     Special espresso + gold treatment.
+     ===================================================== -->
+<section class="slide s-divider thesis" data-section="4" data-nokicker>
+    <div class="thesis-star"></div>
+    <div class="div-wrap">
+        <div class="div-num reveal">05</div>
+        <div>
+            <div class="div-meta reveal">Section 5 · 10 min · The center</div>
+            <h2 class="div-title reveal">The Thesis</h2>
+            <p class="div-ref reveal">Romans 1:16–17</p>
+        </div>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>This is the <b>heart of the whole letter</b>. Everything in Romans unpacks these two verses.</li>
+            <li>Slow down here.</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-scripture thesis" data-section="4">
+    <div class="inner">
+        <blockquote class="verse v-lg reveal"><sup>16</sup>For I am not ashamed of the gospel, for it is the power of God for salvation to everyone who believes, to the Jew first and also to the Greek. <sup>17</sup>For in it the righteousness of God is revealed from faith for faith, as it is written, “The righteous shall live by faith.”</blockquote>
+        <p class="ref reveal">Romans 1:16–17</p>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>Read it slowly, twice. Maybe have everyone read it together the second time.</li>
+            <li>Ask: "What words jump out?" Then walk through it phrase by phrase.</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-phrase thesis" data-section="4">
+    <div class="phrase-wrap">
+        <div class="phrase-step reveal">Phrase 1 of 5</div>
+        <p class="phrase reveal">“not ashamed”</p>
+        <p class="ref reveal">Romans 1:16</p>
+    </div>
+    <p class="phrase-context">For I am <b>not ashamed</b> of the gospel, for it is the power of God for salvation to everyone who believes, to the Jew first and also to the Greek. For in it the righteousness of God is revealed from faith for faith, as it is written, “The righteous shall live by faith.”</p>
+    <aside class="notes">
+        <ul>
+            <li>Why would he need to say this? Rome was the capital of power, and the gospel's hero was a <b>crucified</b> Jew from a backwater province.</li>
+            <li>Crucifixion was the most shameful death in the Roman world. Paul admits it looks like "folly" (1 Corinthians 1:18–23).</li>
+            <li>Connect back to the opening icebreaker about embarrassment.</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-phrase thesis" data-section="4">
+    <div class="phrase-wrap">
+        <div class="phrase-step reveal">Phrase 2 of 5</div>
+        <p class="phrase reveal">“the power of God”</p>
+        <p class="ref reveal">Romans 1:16</p>
+    </div>
+    <p class="phrase-context">For I am not ashamed of the gospel, for it is <b>the power of God</b> for salvation to everyone who believes, to the Jew first and also to the Greek. For in it the righteousness of God is revealed from faith for faith, as it is written, “The righteous shall live by faith.”</p>
+    <aside class="notes">
+        <ul>
+            <li>The Greek word is <b>dynamis</b> (where we get "dynamite").</li>
+            <li>The gospel doesn't just <b>describe</b> salvation. It <b>does</b> it. God's power is at work when the message is spoken.</li>
+            <li>Rome trusted military and political power. Paul says real saving power is in this message.</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-phrase thesis" data-section="4">
+    <div class="phrase-wrap">
+        <div class="phrase-step reveal">Phrase 3 of 5</div>
+        <p class="phrase reveal">“to everyone who believes”</p>
+        <p class="ref reveal">Romans 1:16</p>
+    </div>
+    <p class="phrase-context">For I am not ashamed of the gospel, for it is the power of God for salvation <b>to everyone who believes</b>, to the Jew first and also to the Greek. For in it the righteousness of God is revealed from faith for faith, as it is written, “The righteous shall live by faith.”</p>
+    <aside class="notes">
+        <ul>
+            <li><b>Everyone</b>: no ethnic, moral, or social qualification. The only condition is faith.</li>
+            <li>"<b>Jew first</b>": the order of history (God's promises came through Israel), not a ranking. Both Jew and Greek come in the same way.</li>
+            <li>This speaks directly into the Roman church's Jew–Gentile tension.</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-phrase thesis" data-section="4">
+    <div class="phrase-wrap">
+        <div class="phrase-step reveal">Phrase 4 of 5</div>
+        <p class="phrase reveal" style="font-size:110px">“the righteousness of God is revealed”</p>
+        <p class="ref reveal">Romans 1:17</p>
+    </div>
+    <p class="phrase-context">For I am not ashamed of the gospel, for it is the power of God for salvation to everyone who believes, to the Jew first and also to the Greek. For in it <b>the righteousness of God is revealed</b> from faith for faith, as it is written, “The righteous shall live by faith.”</p>
+    <aside class="notes">
+        <ul>
+            <li>Two sides: God is <b>righteous</b> (he does what is right and keeps his promises), and he <b>gives</b> a right standing to people who don't have one (3:21–26).</li>
+            <li>"<b>Revealed</b>": uncovered, made visible. Verse 18 will use the same word for wrath.</li>
+            <li>"From faith for faith": by faith from start to finish.</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-phrase thesis" data-section="4">
+    <div class="phrase-wrap">
+        <div class="phrase-step reveal">Phrase 5 of 5</div>
+        <p class="phrase reveal">“The righteous shall live by faith.”</p>
+        <p class="ref reveal">Habakkuk 2:4</p>
+    </div>
+    <p class="phrase-context">For I am not ashamed of the gospel, for it is the power of God for salvation to everyone who believes, to the Jew first and also to the Greek. For in it the righteousness of God is revealed from faith for faith, as it is written, <b>“The righteous shall live by faith.”</b></p>
+    <aside class="notes">
+        <ul>
+            <li>Quoted from <b>Habakkuk 2:4</b>, a prophet asking how to trust God while disaster approaches.</li>
+            <li>The point: this isn't new. Faith has always been the way.</li>
+            <li>This verse changed Martin Luther's life and helped spark the Reformation.</li>
+            <li>"Live" covers both receiving life and the way we live: by trusting God every day.</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-discuss" data-section="4">
+    <div class="discuss-wrap">
+        <div class="discuss-label reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>Discuss</div>
+        <p class="question q-sm reveal">Why might someone in Rome be tempted to be <em>ashamed</em> of a message about a crucified Jewish man?</p>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>Listen for: crucifixion was for slaves and rebels. Jews were a mocked minority. Rome valued power, honor, and status.</li>
+            <li>Follow-up: "What makes the gospel embarrassing in <b>our</b> culture?"</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-discuss" data-section="4">
+    <div class="discuss-wrap">
+        <div class="discuss-label reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>Discuss</div>
+        <p class="question reveal">What’s the difference between the gospel being <em>“true”</em> and the gospel being <em>“power”</em>?</p>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>Something true can sit on a shelf, like a fact you agree with. Power changes things.</li>
+            <li>Ask: "Where have you seen the gospel actually <b>change</b> someone, not just inform them?"</li>
+        </ul>
+    </aside>
+</section>
+
+<!-- =====================================================
+     SECTION 6 · ROMANS 1:18–32 · WHY WE NEED IT (12 min)
+     ===================================================== -->
+<section class="slide s-divider" data-section="5" data-nokicker>
+    <div class="div-wrap">
+        <div class="div-num reveal">06</div>
+        <div>
+            <div class="div-meta reveal">Section 6 · 12 min</div>
+            <h2 class="div-title reveal">Why We Need It</h2>
+            <p class="div-ref reveal">Romans 1:18–32</p>
+        </div>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>Now the hard part. Paul turns from the good news to the diagnosis.</li>
+            <li>Tone: we read this <b>about ourselves</b>, not to point at "those people." Chapter 2 will turn the finger back on the reader.</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-scripture" data-section="5">
+    <div class="inner">
+        <blockquote class="verse reveal"><sup>18</sup>For the wrath of God is revealed from heaven against all ungodliness and unrighteousness of men, who by their unrighteousness suppress the truth. <sup>19</sup>For what can be known about God is plain to them, because God has shown it to them. <sup>20</sup>For his invisible attributes, namely, his eternal power and divine nature, have been clearly perceived, ever since the creation of the world, in the things that have been made. So they are without excuse.</blockquote>
+        <p class="ref reveal">Romans 1:18–20</p>
+    </div>
+    <aside class="notes">
+        <p>Read aloud. Point out "revealed" again, the same word as in v17. Righteousness and wrath are both being revealed.</p>
+    </aside>
+</section>
+
+<section class="slide s-scripture" data-section="5">
+    <div class="inner">
+        <blockquote class="verse reveal"><sup>21</sup>For although they knew God, <span class="hl-root">they did not honor him as God or give thanks to him</span>, but they became futile in their thinking, and their foolish hearts were darkened. <sup>22</sup>Claiming to be wise, they became fools, <sup>23</sup>and <span class="hl-ex">exchanged</span> the glory of the immortal God for images resembling mortal man and birds and animals and creeping things.</blockquote>
+        <p class="ref reveal">Romans 1:21–23</p>
+    </div>
+    <aside class="notes">
+        <p>Notice the downward slide: knew God, then didn't honor or thank him, then futile thinking, then darkened hearts, then <b>exchanged</b>.</p>
+    </aside>
+</section>
+
+<section class="slide s-scripture" data-section="5">
+    <div class="inner">
+        <blockquote class="verse v-lg reveal"><sup>24</sup>Therefore <span class="hl-gave">God gave them up</span> in the lusts of their hearts to impurity, to the dishonoring of their bodies among themselves, <sup>25</sup>because they <span class="hl-ex">exchanged</span> the truth about God for a lie and worshiped and served the creature rather than the Creator, who is blessed forever! Amen.</blockquote>
+        <p class="ref reveal">Romans 1:24–25</p>
+    </div>
+    <aside class="notes">
+        <p>Even in the middle of this, Paul breaks into worship: "who is blessed forever! Amen."</p>
+    </aside>
+</section>
+
+<section class="slide s-scripture" data-section="5">
+    <div class="inner">
+        <blockquote class="verse v-sm reveal"><sup>26</sup>For this reason <span class="hl-gave">God gave them up</span> to dishonorable passions. For their women <span class="hl-ex">exchanged</span> natural relations for those that are contrary to nature; <sup>27</sup>and the men likewise gave up natural relations with women and were consumed with passion for one another, men committing shameless acts with men and receiving in themselves the due penalty for their error. <sup>28</sup>And since they did not see fit to acknowledge God, <span class="hl-gave">God gave them up</span> to a debased mind to do what ought not to be done.</blockquote>
+        <p class="ref reveal">Romans 1:26–28</p>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>Read with care. Some in the room may carry personal stories here, so be gentle and clear.</li>
+            <li>Paul's point is the pattern: when we reject the Creator, even our desires get bent. That's true of all of us in different ways.</li>
+            <li>Keep moving. The next slides pull out the big patterns.</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-focus" data-section="5">
+    <div class="inner">
+        <div class="focus-label reveal">The diagnosis · v18</div>
+        <p class="focus-quote reveal">Wrath against those who by their unrighteousness <em>suppress the truth</em></p>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>God's <b>wrath</b> isn't a temper tantrum. It's his settled, just opposition to evil, the response of a loving God to what destroys his world.</li>
+            <li>"<b>Suppress</b>" = to hold down, like holding a beach ball underwater. It takes effort. People aren't ignorant of God. They push the truth away.</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-focus" data-section="5">
+    <div class="inner">
+        <div class="focus-label reveal">Clearly seen · v20</div>
+        <p class="focus-quote reveal">His eternal power and divine nature have been <em>clearly perceived</em>… So they are <em>without excuse</em>.</p>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>Creation is a billboard for God: you can see his power and divine nature (Psalm 19:1).</li>
+            <li>Creation doesn't tell you the whole gospel, but it tells you enough to know you should honor and thank him.</li>
+            <li>So no one can say, "I had no idea."</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-focus" data-section="5">
+    <div class="inner">
+        <div class="focus-label reveal">The root · v21</div>
+        <p class="focus-quote reveal">They did not <em>honor</em> him as God or <em>give thanks</em> to him.</p>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>The root sin isn't a specific behavior. It's <b>ingratitude</b> and refusing to give God his place.</li>
+            <li>Every sin downstream grows from this root: I take the gifts and ignore the Giver.</li>
+            <li>That's why thankfulness is one of our application points tonight.</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-triple" data-section="5">
+    <div class="inner">
+        <div class="triple-head reveal"><h2>“Exchanged”</h2><span class="times">3×</span></div>
+        <div class="triple">
+            <div class="trow reveal"><span class="tv">v23</span><span class="tq lead">the glory of the immortal God</span><span class="arrow">→</span><span class="tq">images</span></div>
+            <div class="trow reveal"><span class="tv">v25</span><span class="tq lead">the truth about God</span><span class="arrow">→</span><span class="tq">a lie</span></div>
+            <div class="trow reveal"><span class="tv">v26</span><span class="tq lead">natural relations</span><span class="arrow">→</span><span class="tq">what is contrary to nature</span></div>
+        </div>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>Sin is an <b>exchange</b>, and always a bad trade: we give up something glorious for something lesser.</li>
+            <li>We were made to worship. We never stop worshiping. We just swap the object (v25: "the creature rather than the Creator").</li>
+            <li>Ask: "What modern 'images' do people trade God for?" (career, comfort, approval, romance, politics).</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-triple gave" data-section="5">
+    <div class="inner">
+        <div class="triple-head reveal"><h2>“God gave them up”</h2><span class="times">3×</span></div>
+        <div class="triple">
+            <div class="trow two reveal"><span class="tv">v24</span><span class="tq">…to <i>impurity</i>, in the lusts of their hearts</span></div>
+            <div class="trow two reveal"><span class="tv">v26</span><span class="tq">…to <i>dishonorable passions</i></span></div>
+            <div class="trow two reveal"><span class="tv">v28</span><span class="tq">…to <i>a debased mind</i></span></div>
+        </div>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>Notice: the wrath described here (v18) isn't fire from heaven. It's God <b>letting go</b> and handing people over to what they chose.</li>
+            <li>Each "exchange" is matched by a "gave them up." We trade God away, and God gives us what we traded for.</li>
+            <li>C.S. Lewis: in the end, either we say to God "Thy will be done," or God says to us, "<b>thy</b> will be done."</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-list" data-section="5">
+    <div class="inner">
+        <div class="focus-label reveal">The list · vv29–31</div>
+        <div class="vice-cloud reveal">
+            <span class="vice">unrighteousness</span><span class="vice">evil</span><span class="vice every">covetousness</span><span class="vice">malice</span><span class="vice every">envy</span><span class="vice">murder</span><span class="vice every">strife</span><span class="vice every">deceit</span><span class="vice">maliciousness</span><span class="vice every">gossips</span><span class="vice every">slanderers</span><span class="vice">haters of God</span><span class="vice">insolent</span><span class="vice every">haughty</span><span class="vice every">boastful</span><span class="vice">inventors of evil</span><span class="vice every">disobedient to parents</span><span class="vice">foolish</span><span class="vice">faithless</span><span class="vice">heartless</span><span class="vice">ruthless</span>
+        </div>
+        <p class="ref reveal">Romans 1:29–31</p>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>Read the list slowly. Let it land.</li>
+            <li>Point out what's sitting right next to "murder": <b>envy, gossip, boasting, disobedience to parents</b>. Paul doesn't separate "big" and "small" sins.</li>
+            <li>Nobody in the room gets to read this list as being about someone else.</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-scripture" data-section="5">
+    <div class="inner">
+        <blockquote class="verse v-lg reveal"><sup>32</sup>Though they know God’s righteous decree that those who practice such things deserve to die, they not only do them but give approval to those who practice them.</blockquote>
+        <p class="ref reveal">Romans 1:32</p>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>The final step: not only doing wrong, but <b>celebrating</b> it, calling evil good.</li>
+            <li>And yet "they know." The conscience still testifies even as it is suppressed.</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-discuss" data-section="5">
+    <div class="discuss-wrap">
+        <div class="discuss-label reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>Discuss</div>
+        <p class="question reveal">Why does Paul start with <em>ingratitude</em> instead of a specific behavior?</p>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>Behaviors are fruit, and ingratitude is the root. Sin is first about a broken relationship with God, then broken rules.</li>
+            <li>Ask: "How does ingratitude actually feel day to day? What does it lead to?"</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-discuss" data-section="5">
+    <div class="discuss-wrap">
+        <div class="discuss-label reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>Discuss</div>
+        <p class="question reveal">Which sins in this list are <em>“respectable”</em> ones we tend to excuse?</p>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>Gossip ("just sharing a prayer request"), envy, boasting, disobedience to parents, strife.</li>
+            <li>Why do we rank sins? It usually lets us feel better than someone else.</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-discuss" data-section="5">
+    <div class="discuss-wrap">
+        <div class="discuss-label reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>Discuss</div>
+        <p class="question reveal">What does it mean that God’s judgment can look like <em>giving us what we want</em>?</p>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>"Gave them up" three times. The punishment is getting what we chose, along with all its consequences.</li>
+            <li>Ask: "Have you ever gotten something you wanted and found it empty or destructive?"</li>
+            <li>This is serious, but it's also a warning given in love.</li>
+        </ul>
+    </aside>
+</section>
+
+<!-- =====================================================
+     SECTION 7 · TIE IT TOGETHER (3 min)
+     ===================================================== -->
+<section class="slide s-divider" data-section="6" data-nokicker>
+    <div class="div-wrap">
+        <div class="div-num reveal">07</div>
+        <div>
+            <div class="div-meta reveal">Section 7 · 3 min</div>
+            <h2 class="div-title reveal">Tie It Together</h2>
+            <p class="div-ref reveal">Romans 1:16–32</p>
+        </div>
+    </div>
+    <aside class="notes"><p>Quick zoom-out before application.</p></aside>
+</section>
+
+<section class="slide s-discuss" data-section="6">
+    <div class="discuss-wrap">
+        <div class="discuss-label reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>Discuss</div>
+        <p class="question reveal">Why does Paul put the <em>good news</em> <span style="white-space:nowrap">(16–17)</span> right before the <em>bad news</em> <span style="white-space:nowrap">(18–32)?</span></p>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>So we never hear the diagnosis without the cure in hand. The bad news is only bearable because the good news comes first.</li>
+            <li>The bad news also shows <b>why</b> the good news is necessary. A cure means nothing until you know you're sick.</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-big" data-section="6">
+    <div class="inner">
+        <p class="big-1 reveal">We cannot save ourselves.</p>
+        <p class="big-2 reveal">The gospel is <em>the power of God for salvation</em> to everyone who believes.</p>
+        <p class="ref reveal">Romans 1:16</p>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>Let this sit for a moment of silence.</li>
+            <li>Chapter 1 shows the problem is bigger than we thought, and verse 16 shows God's power is bigger than the problem.</li>
+        </ul>
+    </aside>
+</section>
+
+<!-- =====================================================
+     SECTION 8 · APPLICATION (8 min)
+     ===================================================== -->
+<section class="slide s-divider" data-section="7" data-nokicker>
+    <div class="div-wrap">
+        <div class="div-num reveal">08</div>
+        <div>
+            <div class="div-meta reveal">Section 8 · 8 min</div>
+            <h2 class="div-title reveal">Application</h2>
+            <p class="div-ref reveal">Four ways to live Romans 1 this week</p>
+        </div>
+    </div>
+    <aside class="notes"><p>Four short applications. Consider splitting into pairs or small groups for a couple of them.</p></aside>
+</section>
+
+<section class="slide s-apply" data-section="7">
+    <div class="apply-band"></div>
+    <div class="inner">
+        <div class="apply-tag reveal"><span class="apply-num">1</span>Identity<span class="apply-ref">v7</span></div>
+        <p class="apply-q reveal">Where are you living from <em>performance</em> instead of from being called, loved, and a saint?</p>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>Examples: work, school, parenting, ministry, appearance, social media.</li>
+            <li>Remind them: called, loved, and saint are what God <b>already</b> says about believers.</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-apply" data-section="7">
+    <div class="apply-band"></div>
+    <div class="inner">
+        <div class="apply-tag reveal"><span class="apply-num">2</span>Thankfulness<span class="apply-ref">v21</span></div>
+        <p class="apply-q reveal">This week: each day, name <em>one specific thing</em> to thank God for.</p>
+        <div class="week reveal">
+            <div class="day">Mon</div><div class="day">Tue</div><div class="day">Wed</div><div class="day">Thu</div><div class="day">Fri</div><div class="day">Sat</div><div class="day">Sun</div>
+        </div>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>Ingratitude was the root in v21, so gratitude is the antidote.</li>
+            <li>Make it <b>specific</b>: not "my family," but "the way my daughter laughed at dinner."</li>
+            <li>Option: a group chat where everyone posts their thank-you each day.</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-apply" data-section="7">
+    <div class="apply-band"></div>
+    <div class="inner">
+        <div class="apply-tag reveal"><span class="apply-num">3</span>Not Ashamed<span class="apply-ref">v16</span></div>
+        <p class="apply-q reveal" style="font-size:70px">Where this week do you tend to hide your faith? What would <em>“not ashamed”</em> look like there?</p>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>"Not ashamed" isn't always preaching. It can be praying before a meal, mentioning church, or offering to pray for a friend.</li>
+            <li>Ask each person to name <b>one</b> concrete situation. We'll pray for these at the end.</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-apply" data-section="7">
+    <div class="apply-band"></div>
+    <div class="inner">
+        <div class="apply-tag reveal"><span class="apply-num">4</span>Humility<span class="apply-ref">vv29–31</span></div>
+        <p class="apply-q reveal">Which sin here do you tend to <em>excuse</em>?</p>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>Optional to share aloud. It may work better as silent reflection or with one trusted person.</li>
+            <li>The goal isn't shame. It's honesty, which leads us back to the power of the gospel.</li>
+        </ul>
+    </aside>
+</section>
+
+<section class="slide s-checklist" data-section="7">
+    <div class="inner">
+        <h2 class="heading reveal" style="margin-bottom:48px">This Week</h2>
+        <div class="checklist">
+            <div class="check reveal"><span class="box"></span><span class="check-name">Identity<small>v7</small></span><span class="check-do">Live as called, loved, a saint, not from performance</span></div>
+            <div class="check reveal"><span class="box"></span><span class="check-name">Thankfulness<small>v21</small></span><span class="check-do">Thank God for one specific thing each day</span></div>
+            <div class="check reveal"><span class="box"></span><span class="check-name">Not Ashamed<small>v16</small></span><span class="check-do">Step out where you usually hide your faith</span></div>
+            <div class="check reveal"><span class="box"></span><span class="check-name">Humility<small>vv29–31</small></span><span class="check-do">Stop excusing the sin you named</span></div>
+        </div>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>Suggest snapping a photo of this slide.</li>
+            <li>Next time: a quick check-in on how the thankfulness challenge went.</li>
+        </ul>
+    </aside>
+</section>
+
+<!-- =====================================================
+     SECTION 9 · CLOSING PRAYER (2 min)
+     ===================================================== -->
+<section class="slide s-prayer" data-section="8">
+    <div class="prayer-wrap">
+        <div class="candle reveal"></div>
+        <div class="prayer-label reveal">Closing Prayer</div>
+        <p class="prayer-text reveal">Pray for each other’s <em>“not ashamed”</em> situation.</p>
+        <p class="prayer-verse reveal">“For I am not ashamed of the gospel…” · Romans 1:16</p>
+    </div>
+    <aside class="notes">
+        <ul>
+            <li>Pair up or go around the circle. Each person prays for the person on their right and their "not ashamed" situation.</li>
+            <li>Close by thanking God, as the opposite of v21, for the gospel's power.</li>
+        </ul>
+    </aside>
+</section>
+
+</main>
+</div>
+
+<!-- =====================================================
+     PRESENTATION CHROME
+     ===================================================== -->
+<div class="chrome" id="chrome">
+    <div class="chrome-row">
+        <span class="chrome-section" id="chromeSection"></span>
+        <span class="chrome-right">
+            <button class="chrome-btn" id="btnNotes" title="Presenter notes (N)" aria-label="Toggle presenter notes">Notes</button>
+            <button class="chrome-btn" id="btnTimer" title="Section timer (T)" aria-label="Toggle section timer">Timer</button>
+            <span class="counter" id="counter" aria-live="polite"></span>
+        </span>
+    </div>
+    <nav class="progress" id="progress" aria-label="Sections"></nav>
+</div>
+
+<aside class="notes-panel" id="notesPanel" aria-live="polite">
+    <div class="notes-head"><span>Presenter notes</span><span id="notesSlide"></span></div>
+    <div class="notes-body" id="notesBody"></div>
+    <div class="notes-keys"><kbd>←</kbd> <kbd>→</kbd> navigate · <kbd>N</kbd> notes · <kbd>T</kbd> timer · <kbd>P</kbd> pause timer · <kbd>R</kbd> reset timer · <kbd>1</kbd>–<kbd>9</kbd> jump to section · <kbd>F</kbd> fullscreen</div>
+</aside>
+
+<div class="timer" id="timer" title="Click to pause / resume">
+    <div class="timer-label" id="timerLabel"></div>
+    <div class="timer-time" id="timerTime">0:00</div>
+    <div class="timer-sub" id="timerSub"></div>
+</div>
+
+<div class="edit-hotzone" id="editHotzone"></div>
+<button class="edit-toggle" id="editToggle" title="Edit mode (E). Ctrl+S saves a copy">Edit text</button>
+
+<script>
+/* ===========================================
+   SECTIONS — names + minutes drive the kicker,
+   the progress bar and the countdown timer.
+   =========================================== */
+const SECTIONS = [
+    { name: 'Opening',             min: 5,  ref: '' },
+    { name: 'Context of the Book', min: 10, ref: '' },
+    { name: 'Called',              min: 10, ref: 'Romans 1:1–7' },
+    { name: 'Paul’s Heart',        min: 5,  ref: 'Romans 1:8–15' },
+    { name: 'The Thesis',          min: 10, ref: 'Romans 1:16–17' },
+    { name: 'Why We Need It',      min: 12, ref: 'Romans 1:18–32' },
+    { name: 'Tie It Together',     min: 3,  ref: '' },
+    { name: 'Application',         min: 8,  ref: '' },
+    { name: 'Closing Prayer',      min: 2,  ref: '' }
+];
+const THESIS = 4;
+
+/* ===========================================
+   SLIDE PRESENTATION CONTROLLER
+   =========================================== */
+class SlidePresentation {
+    constructor() {
+        this.stage = document.getElementById('deckStage');
+        this.slides = [...this.stage.querySelectorAll('.slide')];
+        this.current = 0;
+        this.editing = false;
+        this.started = false;           // timers wait until the presenter first navigates
+        this.paused = false;
+        this.remaining = SECTIONS.map(s => s.min * 60);
+
+        this.decorateSlides();
+        this.buildProgress();
+        this.setupStageScale();
+        this.setupKeyboardNav();
+        this.setupPointerNav();
+        this.setupChromeButtons();
+        this.setupTimer();
+        this.setupEditing();
+
+        const fromHash = parseInt(location.hash.slice(1), 10);
+        this.show(Number.isFinite(fromHash) ? fromHash - 1 : 0);
+        this.ready = true;
+    }
+
+    /* --- Inject section kickers + mark dark slides --- */
+    decorateSlides() {
+        this.slides.forEach(slide => {
+            const i = +slide.dataset.section;
+            if (slide.matches('.s-discuss, .thesis, .s-big')) slide.classList.add('is-dark');
+            if (slide.hasAttribute('data-nokicker') || slide.querySelector('.kicker')) return;
+            const s = SECTIONS[i];
+            const k = document.createElement('div');
+            k.className = 'kicker';
+            k.innerHTML = `<span class="k-num">${String(i + 1).padStart(2, '0')}</span><span>${s.name}</span>` +
+                (s.ref ? `<span class="k-ref">${s.ref}</span>` : '');
+            slide.prepend(k);
+        });
+    }
+
+    /* --- Progress bar: one segment per section, width ∝ minutes --- */
+    buildProgress() {
+        const bar = document.getElementById('progress');
+        bar.innerHTML = '';
+        this.segs = SECTIONS.map((s, i) => {
+            const b = document.createElement('button');
+            b.className = 'seg' + (i === THESIS ? ' thesis-seg' : '');
+            b.style.flex = s.min;
+            b.title = `${i + 1}. ${s.name} (${s.min} min)`;
+            b.setAttribute('aria-label', b.title);
+            b.innerHTML = '<span class="fill"></span>';
+            b.addEventListener('click', e => { e.stopPropagation(); this.jumpToSection(i); });
+            bar.appendChild(b);
+            return b;
+        });
+    }
+
+    /* --- Scale the fixed 1920×1080 stage to fit the window --- */
+    setupStageScale() {
+        const scale = () => {
+            const f = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+            const x = (window.innerWidth - 1920 * f) / 2;
+            const y = (window.innerHeight - 1080 * f) / 2;
+            this.stage.style.transform = `translate(${x}px, ${y}px) scale(${f})`;
+            document.body.classList.toggle('letterbox', y > 50);   // chrome sits on the dark bars
+        };
+        scale();
+        window.addEventListener('resize', scale);
+    }
+
+    /* --- Keyboard --- */
+    setupKeyboardNav() {
+        document.addEventListener('keydown', e => {
+            if (this.editing) {
+                if (e.key === 'Escape') this.toggleEdit();
+                if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') { e.preventDefault(); this.saveFile(); }
+                return;
+            }
+            if (e.ctrlKey || e.metaKey || e.altKey) {
+                if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') { e.preventDefault(); this.saveFile(); }
+                return;
+            }
+            const k = e.key;
+            if (['ArrowRight', 'ArrowDown', ' ', 'PageDown', 'Enter'].includes(k)) { e.preventDefault(); this.next(); }
+            else if (['ArrowLeft', 'ArrowUp', 'PageUp', 'Backspace'].includes(k)) { e.preventDefault(); this.prev(); }
+            else if (k === 'Home') this.show(0);
+            else if (k === 'End') this.show(this.slides.length - 1);
+            else if (k === 'n' || k === 'N') this.toggleNotes();
+            else if (k === 't' || k === 'T') this.toggleTimer();
+            else if (k === 'p' || k === 'P') this.togglePause();
+            else if (k === 'r' || k === 'R') this.resetTimer();
+            else if (k === 'f' || k === 'F') this.toggleFullscreen();
+            else if (k === 'e' || k === 'E') this.toggleEdit();
+            else if (/^[1-9]$/.test(k)) this.jumpToSection(+k - 1);
+        });
+    }
+
+    /* --- Click / tap (left quarter = back) + swipe + wheel --- */
+    setupPointerNav() {
+        const vp = document.getElementById('viewport');
+        let sx = 0, sy = 0, swiped = false;
+        vp.addEventListener('touchstart', e => {
+            sx = e.touches[0].clientX; sy = e.touches[0].clientY; swiped = false;
+        }, { passive: true });
+        vp.addEventListener('touchend', e => {
+            const dx = e.changedTouches[0].clientX - sx;
+            const dy = e.changedTouches[0].clientY - sy;
+            if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+                swiped = true;
+                dx < 0 ? this.next() : this.prev();
+            }
+        }, { passive: true });
+        vp.addEventListener('click', e => {
+            if (this.editing || swiped) { swiped = false; return; }
+            e.clientX < window.innerWidth * 0.25 ? this.prev() : this.next();
+        });
+        let wheelLock = 0;
+        vp.addEventListener('wheel', e => {
+            const now = Date.now();
+            if (this.editing || now < wheelLock || Math.abs(e.deltaY) < 20) return;
+            wheelLock = now + 700;
+            e.deltaY > 0 ? this.next() : this.prev();
+        }, { passive: true });
+    }
+
+    setupChromeButtons() {
+        document.getElementById('btnNotes').addEventListener('click', e => { e.stopPropagation(); this.toggleNotes(); });
+        document.getElementById('btnTimer').addEventListener('click', e => { e.stopPropagation(); this.toggleTimer(); });
+        document.getElementById('timer').addEventListener('click', e => { e.stopPropagation(); this.togglePause(); });
+    }
+
+    /* --- Navigation core --- */
+    next() { this.show(this.current + 1); }
+    prev() { this.show(this.current - 1); }
+    jumpToSection(i) {
+        const idx = this.slides.findIndex(s => +s.dataset.section === i);
+        if (idx >= 0) this.show(idx);
+    }
+
+    show(index) {
+        this.current = Math.max(0, Math.min(index, this.slides.length - 1));
+        if (this.ready) this.started = true;   // first navigation starts the section clocks
+        this.slides.forEach((s, i) => {
+            s.classList.toggle('active', i === this.current);
+            s.classList.toggle('visible', i === this.current);
+        });
+        const slide = this.slides[this.current];
+        const sec = +slide.dataset.section;
+        document.body.classList.toggle('dark', slide.classList.contains('is-dark'));
+        history.replaceState(null, '', '#' + (this.current + 1));
+
+        // counter + section label
+        document.getElementById('counter').textContent = `${this.current + 1} / ${this.slides.length}`;
+        document.getElementById('chromeSection').textContent = `${sec + 1} of 9 · ${SECTIONS[sec].name}`;
+
+        // progress bar fill
+        this.segs.forEach((seg, i) => {
+            const inSec = this.slides.filter(s => +s.dataset.section === i);
+            const pos = inSec.indexOf(slide);
+            const pct = i < sec ? 100 : i > sec ? 0 : ((pos + 1) / inSec.length) * 100;
+            seg.querySelector('.fill').style.width = pct + '%';
+            seg.classList.toggle('current', i === sec);
+        });
+
+        // notes
+        const notes = slide.querySelector('.notes');
+        document.getElementById('notesBody').innerHTML = notes ? notes.innerHTML : '<p><i>No notes for this slide.</i></p>';
+        document.getElementById('notesSlide').textContent = `Slide ${this.current + 1}`;
+
+        this.renderTimer();
+    }
+
+    /* --- Presenter notes (N) --- */
+    toggleNotes() {
+        const open = document.getElementById('notesPanel').classList.toggle('open');
+        document.getElementById('btnNotes').classList.toggle('on', open);
+    }
+
+    /* --- Section countdown timer (T) ---
+       Each section has its own clock that only ticks while you're
+       on a slide in that section. Goes into overtime (+m:ss) past 0. */
+    setupTimer() {
+        setInterval(() => {
+            if (!this.started || this.paused) return;
+            const sec = +this.slides[this.current].dataset.section;
+            this.remaining[sec] -= 1;
+            this.renderTimer();
+        }, 1000);
+    }
+    toggleTimer() {
+        this.started = true;
+        const open = document.getElementById('timer').classList.toggle('open');
+        document.getElementById('btnTimer').classList.toggle('on', open);
+        this.renderTimer();
+    }
+    togglePause() { this.started = true; this.paused = !this.paused; this.renderTimer(); }
+    resetTimer() {
+        const sec = +this.slides[this.current].dataset.section;
+        this.remaining[sec] = SECTIONS[sec].min * 60;
+        this.renderTimer();
+    }
+    renderTimer() {
+        const sec = +this.slides[this.current].dataset.section;
+        const r = this.remaining[sec];
+        const a = Math.abs(r);
+        const t = `${r < 0 ? '+' : ''}${Math.floor(a / 60)}:${String(a % 60).padStart(2, '0')}`;
+        const el = document.getElementById('timer');
+        document.getElementById('timerTime').textContent = t;
+        document.getElementById('timerLabel').textContent = `${sec + 1}. ${SECTIONS[sec].name}`;
+        document.getElementById('timerSub').textContent =
+            this.paused ? 'Paused · P to resume' : r < 0 ? 'Over time' : !this.started ? `${SECTIONS[sec].min} min section` : 'remaining';
+        el.classList.toggle('warn', r >= 0 && r <= 60);
+        el.classList.toggle('over', r < 0);
+        el.classList.toggle('paused', this.paused);
+    }
+
+    toggleFullscreen() {
+        if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+        else document.exitFullscreen?.();
+    }
+
+    /* --- Inline editing (E / hot corner, Ctrl+S downloads a copy) --- */
+    setupEditing() {
+        const hot = document.getElementById('editHotzone');
+        const btn = document.getElementById('editToggle');
+        let hideTimeout = null;
+        const hideSoon = () => {
+            hideTimeout = setTimeout(() => { if (!this.editing) btn.classList.remove('show'); }, 400);
+        };
+        hot.addEventListener('mouseenter', () => { clearTimeout(hideTimeout); btn.classList.add('show'); });
+        hot.addEventListener('mouseleave', hideSoon);
+        btn.addEventListener('mouseenter', () => clearTimeout(hideTimeout));
+        btn.addEventListener('mouseleave', hideSoon);
+        hot.addEventListener('click', e => { e.stopPropagation(); this.toggleEdit(); });
+        btn.addEventListener('click', e => { e.stopPropagation(); this.toggleEdit(); });
+    }
+    toggleEdit() {
+        this.editing = !this.editing;
+        const btn = document.getElementById('editToggle');
+        if (this.editing) this.stage.setAttribute('contenteditable', 'true');
+        else this.stage.removeAttribute('contenteditable');
+        document.body.classList.toggle('editing', this.editing);
+        btn.classList.toggle('active', this.editing);
+        btn.textContent = this.editing ? 'Done editing (Esc) · Ctrl+S to save' : 'Edit text';
+    }
+    saveFile() {
+        const wasEditing = this.editing;
+        if (wasEditing) this.toggleEdit();
+        const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(new Blob([html], { type: 'text/html' }));
+        a.download = 'index.html';
+        a.click();
+        URL.revokeObjectURL(a.href);
+        if (wasEditing) this.toggleEdit();
+    }
+}
+
+window.deck = new SlidePresentation();
+</script>
+</body>
+</html>
